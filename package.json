@@ -7,26 +7,29 @@
     "check-types": "turbo run check-types",
     "add:web": "pnpm --filter '@typemate/web' add",
     "add:root": "pnpm --workspace-root add",
-    "lint": "oxlint",
-    "lint:fix": "oxlint --fix",
-    "format": "oxfmt",
-    "format:check": "oxfmt --check",
+    "lint:check": "ultracite check",
+    "lint:fix": "ultracite fix",
     "knip": "knip",
-    "prepare": "husky"
+    "prepare": "husky",
+    "check": "ultracite check",
+    "fix": "ultracite fix"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.3.13",
     "@types/node": "^25.2.3",
     "husky": "^9.1.7",
     "knip": "^5.83.1",
     "lint-staged": "^16.2.7",
-    "oxfmt": "^0.31.0",
-    "oxlint": "^1.46.0",
     "turbo": "^2.8.5",
-    "typescript": "5.9.2"
+    "typescript": "5.9.2",
+    "ultracite": "7.1.5"
   },
   "lint-staged": {
-    "*": "pnpm run format --no-error-on-unmatched-pattern",
-    "*.{js,jsx,ts,tsx,mjs,cjs}": "pnpm run lint"
+    "*.{js,jsx,ts,tsx,mjs,cjs}": "pnpm run lint",
+    "*.{js,jsx,ts,tsx,json,jsonc,css,scss,md,mdx}": [
+      "pnpm dlx ultracite fix",
+      "pnpm dlx ultracite fix"
+    ]
   },
   "engines": {
     "node": ">=18"

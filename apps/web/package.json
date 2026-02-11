@@ -1,0 +1,39 @@
+{
+  "name": "@typemate/web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@harshtalks/query-keys": "https://pkg.pr.new/harshtalks/query-keys/@harshtalks/query-keys@cca0160",
+    "@tailwindcss/vite": "^4.1.18",
+    "@tanstack/react-query": "^5.90.21",
+    "@tanstack/react-query-devtools": "^5.91.3",
+    "@tanstack/react-router": "^1.159.5",
+    "@tanstack/react-router-devtools": "^1.159.5",
+    "@tanstack/react-router-ssr-query": "^1.159.5",
+    "@tanstack/react-start": "^1.159.5",
+    "effect": "^3.19.16",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "tailwindcss": "^4.1.18",
+    "@typemate/ui": "workspace:*"
+  },
+  "devDependencies": {
+    "@typemate/ts-config": "workspace:*",
+    "@types/node": "^25.2.3",
+    "@types/react": "^19.2.13",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.4",
+    "vite": "^7.3.1",
+    "vite-tsconfig-paths": "^6.1.0"
+  }
+}
