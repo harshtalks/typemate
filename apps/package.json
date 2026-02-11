@@ -1,0 +1,7 @@
+{
+  "name": "@typemate/web",
+  "dependencies": {
+    "@typemate/ts-config": "workspace:*"
+  },
+  "devDependencies": {}
+}
