@@ -1,0 +1,10 @@
+{
+  "extends": "@typemate/ts-config/react.json",
+  "compilerOptions": {
+    "paths": {
+      "@typemate/ui/*": ["./src/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}
