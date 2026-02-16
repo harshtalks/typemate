@@ -1,3 +1,7 @@
 @import "@typemate/ui/index.css";
-
+@import "@fontsource/inter";
 @source "./";
+
+body {
+  font-family: "Inter" sans-serif;
+}

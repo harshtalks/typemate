@@ -13,7 +13,8 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@harshtalks/query-keys": "https://pkg.pr.new/harshtalks/query-keys/@harshtalks/query-keys@cca0160",
+    "@fontsource/inter": "^5.2.8",
+    "@harshtalks/query-keys": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "@tanstack/react-query": "catalog:",
     "@tanstack/react-query-devtools": "catalog:",
@@ -25,14 +26,16 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "tailwindcss": "catalog:",
-    "@typemate/ui": "workspace:*"
+    "@typemate/ui": "workspace:*",
+    "@typemate/auth": "workspace:*",
+    "@typemate/db": "workspace:*"
   },
   "devDependencies": {
     "@typemate/ts-config": "workspace:*",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "@vitejs/plugin-react": "^5.1.4",
+    "@vitejs/plugin-react": "catalog:",
     "vite": "catalog:",
     "vite-tsconfig-paths": "catalog:"
   }

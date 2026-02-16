@@ -1,0 +1,14 @@
+{
+  "name": "@typemate/types",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "@typemate/ts-config": "workspace:*"
+  },
+  "dependencies": {
+    "effect": "catalog:"
+  },
+  "exports": {
+    ".": "./index.ts"
+  }
+}

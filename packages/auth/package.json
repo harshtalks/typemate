@@ -1,0 +1,23 @@
+{
+  "name": "@typemate/auth",
+  "version": "0.0.1",
+  "devDependencies": {
+    "@typemate/ts-config": "workspace:*",
+    "@typemate/tools": "workspace:*",
+    "@dotenvx/dotenvx": "catalog:",
+    "zod": "catalog:",
+    "@t3-oss/env-core": "catalog:"
+  },
+  "peerDependencies": {
+    "@typemate/db": "workspace:*",
+    "@tanstack/react-query": "catalog:",
+    "@tanstack/react-start": "catalog:"
+  },
+  "dependencies": {
+    "better-auth": "^1.4.18"
+  },
+  "exports": {
+    "./*": "./src/*.ts",
+    "./env": "./env.ts"
+  }
+}

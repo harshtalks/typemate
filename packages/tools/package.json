@@ -1,0 +1,14 @@
+{
+  "name": "@typemate/tools",
+  "version": "0.0.1",
+  "devDependencies": {
+    "@typemate/ts-config": "workspace:*"
+  },
+  "dependencies": {
+    "effect": "catalog:",
+    "zod": "catalog:"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  }
+}
