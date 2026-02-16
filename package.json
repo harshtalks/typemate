@@ -7,21 +7,28 @@
     "check-types": "turbo run check-types",
     "add:web": "pnpm --filter '@typemate/web' add",
     "add:root": "pnpm --workspace-root add",
+    "add:db": "pnpm --filter '@typemate/db' add",
+    "add:types": "pnpm --filter '@typemate/types' add",
+    "add:auth": "pnpm --filter '@typemate/auth' add",
     "lint:check": "ultracite check",
     "lint:fix": "ultracite fix",
     "knip": "knip",
     "prepare": "husky",
     "check": "ultracite check",
-    "fix": "ultracite fix"
+    "fix": "ultracite fix",
+    "db:migrate": "pnpm --filter '@typemate/db' db:migrate",
+    "db:generate": "pnpm --filter '@typemate/db' db:generate",
+    "db:push": "pnpm --filter '@typemate/db' db:push"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.13",
-    "@types/node": "^25.2.3",
+    "@biomejs/biome": "catalog:",
+    "@dotenvx/dotenvx": "catalog:",
+    "@types/node": "catalog:",
     "husky": "^9.1.7",
     "knip": "^5.83.1",
-    "lint-staged": "^16.2.7",
+    "lint-staged": "catalog:",
     "turbo": "^2.8.5",
-    "typescript": "5.9.2",
+    "typescript": "catalog:",
     "ultracite": "7.1.5"
   },
   "lint-staged": {
