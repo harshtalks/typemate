@@ -12,7 +12,7 @@ import { WarningIcon } from "@typemate/ui/components/icons";
 const NotFound = () => {
   const { navigate } = useRouter();
   return (
-    <Empty>
+    <Empty className="my-40">
       <EmptyHeader>
         <EmptyMedia>
           <WarningIcon />

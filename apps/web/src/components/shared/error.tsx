@@ -11,7 +11,7 @@ import { WarningIcon } from "@typemate/ui/components/icons";
 
 const ErrorComponent = ({ error, reset }: ErrorComponentProps) => {
   return (
-    <Empty>
+    <Empty className="my-40">
       <EmptyHeader>
         <EmptyMedia>
           <WarningIcon />

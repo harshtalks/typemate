@@ -1,4 +1,5 @@
 import { Input as InputPrimitive } from "@base-ui/react/input";
+import { SpinnerIcon } from "@phosphor-icons/react";
 import { cn } from "@typemate/ui/lib/utils";
 import type * as React from "react";
 
@@ -16,4 +17,31 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
   );
 }
 
-export { Input };
+function InputWithSpinner({
+  className,
+  type,
+  isLoading,
+  ...props
+}: React.ComponentProps<"input"> & { isLoading?: boolean }) {
+  return (
+    <div className="relative">
+      <Input
+        className={cn(
+          "peer [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none [&::-webkit-search-results-button]:appearance-none [&::-webkit-search-results-decoration]:appearance-none",
+          className
+        )}
+        placeholder="Search..."
+        type={type}
+        {...props}
+      />
+      <SpinnerIcon
+        className={cn(
+          "absolute top-1/2 right-1 size-5 -translate-y-1/2 animate-spin rounded-l-none text-muted-foreground transition-opacity hover:bg-transparent focus-visible:ring-ring/50",
+          isLoading ? "opacity-100" : "opacity-0"
+        )}
+      />
+    </div>
+  );
+}
+
+export { Input, InputWithSpinner };

@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as authenticatedRouteRouteImport } from './routes/(authenticated)/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SignInIndexRouteImport } from './routes/sign-in/index'
+import { Route as authenticatedCreateNewWorkspaceRouteImport } from './routes/(authenticated)/create-new-workspace'
 import { Route as authenticatedWorkspacesIndexRouteImport } from './routes/(authenticated)/workspaces/index'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
@@ -29,6 +30,12 @@ const SignInIndexRoute = SignInIndexRouteImport.update({
   path: '/sign-in/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const authenticatedCreateNewWorkspaceRoute =
+  authenticatedCreateNewWorkspaceRouteImport.update({
+    id: '/create-new-workspace',
+    path: '/create-new-workspace',
+    getParentRoute: () => authenticatedRouteRoute,
+  } as any)
 const authenticatedWorkspacesIndexRoute =
   authenticatedWorkspacesIndexRouteImport.update({
     id: '/workspaces/',
@@ -43,12 +50,14 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/create-new-workspace': typeof authenticatedCreateNewWorkspaceRoute
   '/sign-in/': typeof SignInIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/workspaces/': typeof authenticatedWorkspacesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/create-new-workspace': typeof authenticatedCreateNewWorkspaceRoute
   '/sign-in': typeof SignInIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/workspaces': typeof authenticatedWorkspacesIndexRoute
@@ -57,19 +66,26 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/(authenticated)': typeof authenticatedRouteRouteWithChildren
+  '/(authenticated)/create-new-workspace': typeof authenticatedCreateNewWorkspaceRoute
   '/sign-in/': typeof SignInIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/(authenticated)/workspaces/': typeof authenticatedWorkspacesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sign-in/' | '/api/auth/$' | '/workspaces/'
+  fullPaths:
+    | '/'
+    | '/create-new-workspace'
+    | '/sign-in/'
+    | '/api/auth/$'
+    | '/workspaces/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sign-in' | '/api/auth/$' | '/workspaces'
+  to: '/' | '/create-new-workspace' | '/sign-in' | '/api/auth/$' | '/workspaces'
   id:
     | '__root__'
     | '/'
     | '/(authenticated)'
+    | '/(authenticated)/create-new-workspace'
     | '/sign-in/'
     | '/api/auth/$'
     | '/(authenticated)/workspaces/'
@@ -105,6 +121,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignInIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/(authenticated)/create-new-workspace': {
+      id: '/(authenticated)/create-new-workspace'
+      path: '/create-new-workspace'
+      fullPath: '/create-new-workspace'
+      preLoaderRoute: typeof authenticatedCreateNewWorkspaceRouteImport
+      parentRoute: typeof authenticatedRouteRoute
+    }
     '/(authenticated)/workspaces/': {
       id: '/(authenticated)/workspaces/'
       path: '/workspaces'
@@ -123,10 +146,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface authenticatedRouteRouteChildren {
+  authenticatedCreateNewWorkspaceRoute: typeof authenticatedCreateNewWorkspaceRoute
   authenticatedWorkspacesIndexRoute: typeof authenticatedWorkspacesIndexRoute
 }
 
 const authenticatedRouteRouteChildren: authenticatedRouteRouteChildren = {
+  authenticatedCreateNewWorkspaceRoute: authenticatedCreateNewWorkspaceRoute,
   authenticatedWorkspacesIndexRoute: authenticatedWorkspacesIndexRoute,
 }
 

@@ -4,10 +4,6 @@ type GenerateStringBrand<T extends string> = string & Brand.Brand<T>;
 const GenerateStringBrand = <T extends string>() =>
   Brand.nominal<GenerateStringBrand<T>>();
 
-export type BrandedIdConvertor<T extends string> = Brand.Brand.Constructor<
-  GenerateStringBrand<T>
->;
-
 export const UserId = GenerateStringBrand<"userId">();
 export type UserId = GenerateStringBrand<"userId">;
 

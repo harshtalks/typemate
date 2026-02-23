@@ -28,6 +28,7 @@
     ".": "./index.ts",
     "./env": "./env.ts",
     "./schema": "./src/schema/index.ts",
-    "./parsers": "./src/parsers/index.ts"
+    "./parsers/*": "./src/parsers/*.ts",
+    "./ids": "./src/ids.tsx"
   }
 }

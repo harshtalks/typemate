@@ -1,7 +1,8 @@
 import { useLiveQuery } from "@tanstack/react-db";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import type { Organization } from "@typemate/db/schema";
-import { Button } from "@typemate/ui/components/button";
+import { Button, buttonVariants } from "@typemate/ui/components/button";
+
 import {
   Empty,
   EmptyContent,
@@ -14,15 +15,20 @@ import { EmptyIcon } from "@typemate/ui/components/icons";
 import { Array, pipe } from "effect";
 import { LiveQueryWrapper } from "~/components/shared/live-query-wrapper";
 import { NonEmptyArray } from "~/components/utils/array";
+import WorkspaceCard from "~/components/workspaces/workspace-card";
 import { workspacesCollection } from "~/queries/workspaces";
 
 export const Route = createFileRoute("/(authenticated)/workspaces/")({
   component: RouteComponent,
+  ssr: false,
 });
 
 function RouteComponent() {
   const liveQuery = useLiveQuery((query) =>
-    query.from({ workspace: workspacesCollection })
+    query
+      .from({ workspace: workspacesCollection })
+      .limit(10)
+      .orderBy(({ workspace }) => workspace.createdAt, "desc")
   );
 
   return (
@@ -57,17 +63,29 @@ function RouteComponent() {
                         </EmptyDescription>
                       </EmptyHeader>
                       <EmptyContent>
-                        <Button>Create Workspace</Button>
+                        <Button
+                          render={() => (
+                            <Link
+                              className={buttonVariants({})}
+                              to="/create-new-workspace"
+                            >
+                              Create Workspace
+                            </Link>
+                          )}
+                        />
                       </EmptyContent>
                     </Empty>
                   </NonEmptyArray.WhenEmpty>
                   <NonEmptyArray.WhenNonEmpty>
                     {(workspaces) => (
-                      <div className="space-y-2">
+                      <div className="space-y-8">
                         {pipe(
                           workspaces,
                           Array.map((workspace: Organization) => (
-                            <div key={workspace.id}>{workspace.id}</div>
+                            <WorkspaceCard
+                              key={workspace.id}
+                              workspace={workspace}
+                            />
                           ))
                         )}
                       </div>

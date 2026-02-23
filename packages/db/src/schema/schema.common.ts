@@ -5,6 +5,6 @@ export const createTimestampSchema = <T extends string>(key: T) =>
     mode: "timestamp",
   });
 
-export const createdAtSchema = createTimestampSchema("created_at");
+export const createdAtSchema = createTimestampSchema("created_at").notNull();
 
 export const updatedAtSchema = createTimestampSchema("updated_at");

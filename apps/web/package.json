@@ -30,6 +30,7 @@
     "@typemate/auth": "workspace:*",
     "@typemate/db": "workspace:*",
     "@typemate/ui": "workspace:*",
+    "@typemate/types": "workspace:*",
     "effect": "catalog:",
     "motion": "^12.34.0",
     "react": "catalog:",

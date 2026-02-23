@@ -1,5 +1,6 @@
 "use client";
 
+// biome-ignore lint/style/noExportedImports: false
 import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog";
 import { cn } from "@typemate/ui/lib/utils";
 import type * as React from "react";
@@ -184,4 +185,5 @@ export {
   AlertDialogPortal,
   AlertDialogTitle,
   AlertDialogTrigger,
+  AlertDialogPrimitive,
 };

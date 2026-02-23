@@ -3,18 +3,14 @@ import { createInsertSchema } from "drizzle-zod";
 import z from "zod";
 import { organization } from "../schema";
 
-export const brandedSchemaGenerator = <T extends string>(
-  brandGenerator: Branded.BrandedIdConvertor<T>
-) => z.string().transform(brandGenerator);
-
 export const organizationInsert = createInsertSchema(organization, {
-  id: brandedSchemaGenerator(Branded.OrganizationId).optional(),
-  logo: z.string().optional(),
-  metadata: z.object().optional(),
+  id: z.string().transform(Branded.OrganizationId).optional(),
+  metadata: z.any().optional(),
 });
 
 export const organizationSelect = createInsertSchema(organization, {
-  id: brandedSchemaGenerator(Branded.OrganizationId),
+  id: z.string().transform(Branded.OrganizationId),
+  metadata: z.any().optional(),
 });
 
 export const organizationSelectArray = z.array(organizationSelect);

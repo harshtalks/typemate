@@ -1,6 +1,9 @@
 import { createCollection } from "@tanstack/db";
 import { queryCollectionOptions } from "@tanstack/query-db-collection";
-import { organizationInsert } from "@typemate/db/parsers";
+import {
+  organizationInsert,
+  organizationSelect,
+} from "@typemate/db/parsers/organizations";
 import { getQueryClient, queryKeyFactory } from "~/lib/react-query";
 import { authRepo } from "~/rpcs/auth";
 
@@ -10,6 +13,7 @@ export const workspacesCollection = createCollection(
     queryFn: async () => authRepo.getSessionWorkspaces(),
     queryClient: getQueryClient(),
     getKey: (item) => item.id,
+    schema: organizationSelect,
     onInsert: async ({ transaction }) => {
       await Promise.all(
         transaction.mutations.map((mutation) =>
@@ -18,6 +22,14 @@ export const workspacesCollection = createCollection(
           })
         )
       );
+    },
+    onDelete: async ({ transaction }) => {
+      const { original } = transaction.mutations[0];
+      await authRepo.deleteWorkspace({
+        data: {
+          id: original.id,
+        },
+      });
     },
   })
 );
