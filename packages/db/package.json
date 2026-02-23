@@ -11,7 +11,8 @@
     "tsx": "^4.21.0",
     "zod": "catalog:",
     "@t3-oss/env-core": "catalog:",
-    "dotenv": "^17.2.4"
+    "dotenv": "^17.2.4",
+    "effect": "catalog:"
   },
   "dependencies": {
     "@libsql/client": "^0.17.0",

@@ -6,7 +6,9 @@
     "@typemate/tools": "workspace:*",
     "@dotenvx/dotenvx": "catalog:",
     "zod": "catalog:",
-    "@t3-oss/env-core": "catalog:"
+    "@t3-oss/env-core": "catalog:",
+    "resend": "catalog:",
+    "effect": "catalog:"
   },
   "peerDependencies": {
     "@typemate/db": "workspace:*",

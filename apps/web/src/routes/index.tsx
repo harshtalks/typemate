@@ -1,7 +1,7 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { ClientOnly, createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@typemate/ui/components/button";
-import { NotebookIcon } from "@typemate/ui/components/icons";
 import { cn } from "@typemate/ui/lib/utils";
+import { RandomVectors } from "~/components/landing/random-vectors";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -11,13 +11,15 @@ function Home() {
   return (
     <section className={cn("py-40")}>
       <div className="container mx-auto">
-        <div className="flex flex-col items-center gap-5">
-          <NotebookIcon className="size-8" />
+        <div className="flex flex-col items-center gap-4">
+          <ClientOnly>
+            <RandomVectors />
+          </ClientOnly>
           <h2 className="text-center font-semibold text-5xl">
-            Join our community
+            Jupiter Notebook Capabilities
             <br />
             <span className="text-muted-foreground/80">
-              of designers & developers
+              for Typescript Ecosystem
             </span>
           </h2>
           <div className="flex items-center gap-4">

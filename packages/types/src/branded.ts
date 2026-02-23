@@ -24,3 +24,12 @@ export const PasskeyId = GenerateStringBrand<"passkeyId">();
 
 export type CredentialId = GenerateStringBrand<"credentialId">;
 export const CredentialId = GenerateStringBrand<"credentialId">();
+
+export type OrganizationId = GenerateStringBrand<"organizationId">;
+export const OrganizationId = GenerateStringBrand<"organizationId">();
+
+export type MemberId = GenerateStringBrand<"memberId">;
+export const MemberId = GenerateStringBrand<"memberId">();
+
+export type InvitationId = GenerateStringBrand<"invitationId">;
+export const InvitationId = GenerateStringBrand<"invitationId">();

@@ -10,11 +10,14 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import { Toaster } from "@typemate/ui/components/sonner";
 import type { ReactNode } from "react";
+import type { AnnotatedQueryKeyFactory } from "~/lib/react-query";
 import AppCSS from "~/styles/app.css?url";
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
+  queryKeyFactory: AnnotatedQueryKeyFactory;
 }>()({
   head: () => ({
     meta: [
@@ -50,6 +53,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
       </head>
       <body>
         {children}
+        <Toaster />
         <TanStackRouterDevtools position="bottom-right" />
         <ReactQueryDevtools buttonPosition="bottom-left" />
         <Scripts />

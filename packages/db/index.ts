@@ -12,6 +12,7 @@ const db = drizzle({
     authToken: envs.SERVER_AUTH_TOKEN,
   },
   schema,
+  logger: true,
 });
 
 export default db;

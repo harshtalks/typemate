@@ -10,6 +10,7 @@
     "add:db": "pnpm --filter '@typemate/db' add",
     "add:types": "pnpm --filter '@typemate/types' add",
     "add:auth": "pnpm --filter '@typemate/auth' add",
+    "add:shadcn": "pnpm --filter '@typemate/ui' add:shadcn",
     "lint:check": "ultracite check",
     "lint:fix": "ultracite fix",
     "knip": "knip",

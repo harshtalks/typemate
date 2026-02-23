@@ -6,6 +6,9 @@
       "performance": {
         "noBarrelFile": "off",
         "noNamespaceImport": "off"
+      },
+      "suspicious": {
+        "noShadowRestrictedNames": "off"
       }
     }
   }

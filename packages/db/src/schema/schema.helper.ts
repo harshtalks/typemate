@@ -16,4 +16,7 @@ export const PrefixedIDs = {
   account: prefixedId("account"),
   verification: prefixedId("verification"),
   passkey: prefixedId("passkey"),
+  org: prefixedId("org"),
+  member: prefixedId("member"),
+  invitation: prefixedId("invitation"),
 };

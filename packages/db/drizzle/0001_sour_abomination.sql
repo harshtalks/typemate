@@ -1,0 +1,1 @@
+ALTER TABLE `session` ADD `expires_at` integer;
