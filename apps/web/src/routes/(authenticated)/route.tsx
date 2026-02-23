@@ -1,7 +1,7 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { Option } from "effect";
 import { authMiddleware } from "~/middlewares/auth";
-import { getUser } from "~/rpcs/auth";
+import { authRepo } from "~/rpcs/auth";
 
 export const Route = createFileRoute("/(authenticated)")({
   component: RouteComponent,
@@ -13,7 +13,7 @@ export const Route = createFileRoute("/(authenticated)")({
 
     const user = await queryClient.ensureQueryData({
       queryKey: queryKeyFactory.keys.user(),
-      queryFn: () => getUser(),
+      queryFn: () => authRepo.getUser(),
       revalidateIfStale: true,
     });
 

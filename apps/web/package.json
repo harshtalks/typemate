@@ -15,6 +15,10 @@
   "dependencies": {
     "@fontsource/inter": "^5.2.8",
     "@tailwindcss/vite": "catalog:",
+    "@tanstack/db": "^0.5.28",
+    "@tanstack/query-core": "^5.90.20",
+    "@tanstack/query-db-collection": "^1.0.25",
+    "@tanstack/react-db": "^0.1.72",
     "@tanstack/react-form": "^1.28.3",
     "@tanstack/react-form-start": "^1.28.3",
     "@tanstack/react-query": "catalog:",
