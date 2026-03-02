@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as authenticatedRouteRouteImport } from './routes/(authenticated)/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SignInIndexRouteImport } from './routes/sign-in/index'
+import { Route as authenticatedProfileRouteImport } from './routes/(authenticated)/profile'
 import { Route as authenticatedCreateNewWorkspaceRouteImport } from './routes/(authenticated)/create-new-workspace'
 import { Route as authenticatedWorkspacesIndexRouteImport } from './routes/(authenticated)/workspaces/index'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
@@ -29,6 +30,11 @@ const SignInIndexRoute = SignInIndexRouteImport.update({
   id: '/sign-in/',
   path: '/sign-in/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const authenticatedProfileRoute = authenticatedProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => authenticatedRouteRoute,
 } as any)
 const authenticatedCreateNewWorkspaceRoute =
   authenticatedCreateNewWorkspaceRouteImport.update({
@@ -51,6 +57,7 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/create-new-workspace': typeof authenticatedCreateNewWorkspaceRoute
+  '/profile': typeof authenticatedProfileRoute
   '/sign-in/': typeof SignInIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/workspaces/': typeof authenticatedWorkspacesIndexRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/create-new-workspace': typeof authenticatedCreateNewWorkspaceRoute
+  '/profile': typeof authenticatedProfileRoute
   '/sign-in': typeof SignInIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/workspaces': typeof authenticatedWorkspacesIndexRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/(authenticated)': typeof authenticatedRouteRouteWithChildren
   '/(authenticated)/create-new-workspace': typeof authenticatedCreateNewWorkspaceRoute
+  '/(authenticated)/profile': typeof authenticatedProfileRoute
   '/sign-in/': typeof SignInIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/(authenticated)/workspaces/': typeof authenticatedWorkspacesIndexRoute
@@ -76,16 +85,24 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/create-new-workspace'
+    | '/profile'
     | '/sign-in/'
     | '/api/auth/$'
     | '/workspaces/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/create-new-workspace' | '/sign-in' | '/api/auth/$' | '/workspaces'
+  to:
+    | '/'
+    | '/create-new-workspace'
+    | '/profile'
+    | '/sign-in'
+    | '/api/auth/$'
+    | '/workspaces'
   id:
     | '__root__'
     | '/'
     | '/(authenticated)'
     | '/(authenticated)/create-new-workspace'
+    | '/(authenticated)/profile'
     | '/sign-in/'
     | '/api/auth/$'
     | '/(authenticated)/workspaces/'
@@ -121,6 +138,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignInIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/(authenticated)/profile': {
+      id: '/(authenticated)/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof authenticatedProfileRouteImport
+      parentRoute: typeof authenticatedRouteRoute
+    }
     '/(authenticated)/create-new-workspace': {
       id: '/(authenticated)/create-new-workspace'
       path: '/create-new-workspace'
@@ -147,11 +171,13 @@ declare module '@tanstack/react-router' {
 
 interface authenticatedRouteRouteChildren {
   authenticatedCreateNewWorkspaceRoute: typeof authenticatedCreateNewWorkspaceRoute
+  authenticatedProfileRoute: typeof authenticatedProfileRoute
   authenticatedWorkspacesIndexRoute: typeof authenticatedWorkspacesIndexRoute
 }
 
 const authenticatedRouteRouteChildren: authenticatedRouteRouteChildren = {
   authenticatedCreateNewWorkspaceRoute: authenticatedCreateNewWorkspaceRoute,
+  authenticatedProfileRoute: authenticatedProfileRoute,
   authenticatedWorkspacesIndexRoute: authenticatedWorkspacesIndexRoute,
 }
 

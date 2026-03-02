@@ -1,5 +1,6 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { Option } from "effect";
+import AuthenticatedHeader from "~/components/shared/header";
 import { authMiddleware } from "~/middlewares/auth";
 import { authRepo } from "~/rpcs/auth";
 
@@ -31,7 +32,10 @@ export const Route = createFileRoute("/(authenticated)")({
 function RouteComponent() {
   return (
     <section className="mx-auto max-w-xl py-12">
-      <Outlet />
+      <AuthenticatedHeader />
+      <div className="py-40">
+        <Outlet />
+      </div>
     </section>
   );
 }

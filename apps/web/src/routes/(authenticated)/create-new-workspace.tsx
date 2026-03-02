@@ -51,104 +51,102 @@ function RouteComponent() {
   });
 
   return (
-    <div className="py-40">
-      <div className="space-y-10">
-        <div className="space-y-2">
-          <h1 className="font-semibold text-5xl">Create new workspace</h1>
-          <p className="text-muted-foreground text-sm">
-            You can create a new workspace by filling out the form below. Once
-            you create a workspace, you can add notes to it and share it with
-            other users.
-          </p>
-        </div>
-
-        <form
-          className="space-y-4"
-          onSubmit={(e) => {
-            e.preventDefault();
-            form.handleSubmit();
-          }}
-        >
-          <Empty className="border">
-            <EmptyHeader>
-              <EmptyMedia>
-                <EmptyIcon />
-              </EmptyMedia>
-              <EmptyContent className="w-sm">
-                <form.Field name="name">
-                  {(field) => {
-                    const isInvalid =
-                      field.state.meta.isTouched && !field.state.meta.isValid;
-                    return (
-                      <Field>
-                        <Input
-                          aria-invalid={isInvalid}
-                          id={field.name}
-                          name={field.name}
-                          onBlur={field.handleBlur}
-                          onChange={(e) => field.handleChange(e.target.value)}
-                          placeholder="Enter workspace name"
-                          value={field.state.value}
-                        />
-                        {isInvalid && (
-                          <FieldError errors={field.state.meta.errors} />
-                        )}
-                      </Field>
-                    );
-                  }}
-                </form.Field>
-                <form.Field
-                  asyncDebounceMs={500}
-                  name="slug"
-                  validators={{
-                    onChangeAsync: async ({ value }) => {
-                      if (!value) {
-                        return undefined;
-                      }
-
-                      const { status } = await checkSlugMutation.mutateAsync({
-                        data: { slug: value },
-                      });
-
-                      if (!status) {
-                        return {
-                          message: "Slug is already taken",
-                        };
-                      }
-
-                      return undefined;
-                    },
-                  }}
-                >
-                  {(field) => {
-                    const isInvalid =
-                      field.state.meta.isTouched && !field.state.meta.isValid;
-                    return (
-                      <Field>
-                        <InputWithSpinner
-                          aria-invalid={isInvalid}
-                          id={field.name}
-                          isLoading={checkSlugMutation.isPending}
-                          name={field.name}
-                          onBlur={field.handleBlur}
-                          onChange={(e) => field.handleChange(e.target.value)}
-                          placeholder="Enter slug"
-                          value={field.state.value}
-                        />
-                        {isInvalid && (
-                          <FieldError errors={field.state.meta.errors} />
-                        )}
-                      </Field>
-                    );
-                  }}
-                </form.Field>
-
-                <Button type="submit">Create Workspace</Button>
-              </EmptyContent>
-            </EmptyHeader>
-          </Empty>
-        </form>
+    <div className="space-y-10">
+      <div className="space-y-2">
+        <h1 className="font-semibold text-5xl">Create new workspace</h1>
+        <p className="text-muted-foreground text-sm">
+          You can create a new workspace by filling out the form below. Once you
+          create a workspace, you can add notes to it and share it with other
+          users.
+        </p>
       </div>
+
+      <form
+        className="space-y-4"
+        onSubmit={(e) => {
+          e.preventDefault();
+          form.handleSubmit();
+        }}
+      >
+        <Empty className="border">
+          <EmptyHeader>
+            <EmptyMedia>
+              <EmptyIcon />
+            </EmptyMedia>
+            <EmptyContent className="w-sm">
+              <form.Field name="name">
+                {(field) => {
+                  const isInvalid =
+                    field.state.meta.isTouched && !field.state.meta.isValid;
+                  return (
+                    <Field>
+                      <Input
+                        aria-invalid={isInvalid}
+                        id={field.name}
+                        name={field.name}
+                        onBlur={field.handleBlur}
+                        onChange={(e) => field.handleChange(e.target.value)}
+                        placeholder="Enter workspace name"
+                        value={field.state.value}
+                      />
+                      {isInvalid && (
+                        <FieldError errors={field.state.meta.errors} />
+                      )}
+                    </Field>
+                  );
+                }}
+              </form.Field>
+              <form.Field
+                asyncDebounceMs={500}
+                name="slug"
+                validators={{
+                  onChangeAsync: async ({ value }) => {
+                    if (!value) {
+                      return undefined;
+                    }
+
+                    const { status } = await checkSlugMutation.mutateAsync({
+                      data: { slug: value },
+                    });
+
+                    if (!status) {
+                      return {
+                        message: "Slug is already taken",
+                      };
+                    }
+
+                    return undefined;
+                  },
+                }}
+              >
+                {(field) => {
+                  const isInvalid =
+                    field.state.meta.isTouched && !field.state.meta.isValid;
+                  return (
+                    <Field>
+                      <InputWithSpinner
+                        aria-invalid={isInvalid}
+                        id={field.name}
+                        isLoading={checkSlugMutation.isPending}
+                        name={field.name}
+                        onBlur={field.handleBlur}
+                        onChange={(e) => field.handleChange(e.target.value)}
+                        placeholder="Enter slug"
+                        value={field.state.value}
+                      />
+                      {isInvalid && (
+                        <FieldError errors={field.state.meta.errors} />
+                      )}
+                    </Field>
+                  );
+                }}
+              </form.Field>
+
+              <Button type="submit">Create Workspace</Button>
+            </EmptyContent>
+          </EmptyHeader>
+        </Empty>
+      </form>
     </div>
   );
 }

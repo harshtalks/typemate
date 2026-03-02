@@ -1,9 +1,6 @@
 import { createCollection } from "@tanstack/db";
 import { queryCollectionOptions } from "@tanstack/query-db-collection";
-import {
-  organizationInsert,
-  organizationSelect,
-} from "@typemate/db/parsers/organizations";
+import { organizationSelect } from "@typemate/db/parsers/organizations";
 import { getQueryClient, queryKeyFactory } from "~/lib/react-query";
 import { authRepo } from "~/rpcs/auth";
 
@@ -18,7 +15,7 @@ export const workspacesCollection = createCollection(
       await Promise.all(
         transaction.mutations.map((mutation) =>
           authRepo.createSessionWorkspace({
-            data: organizationInsert.parse(mutation.modified),
+            data: mutation.modified,
           })
         )
       );

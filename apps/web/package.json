@@ -29,8 +29,9 @@
     "@tanstack/react-start": "catalog:",
     "@typemate/auth": "workspace:*",
     "@typemate/db": "workspace:*",
-    "@typemate/ui": "workspace:*",
     "@typemate/types": "workspace:*",
+    "@typemate/ui": "workspace:*",
+    "date-fns": "^4.1.0",
     "effect": "catalog:",
     "motion": "^12.34.0",
     "react": "catalog:",
@@ -38,6 +39,7 @@
     "resend": "catalog:",
     "sonner": "catalog:",
     "tailwindcss": "catalog:",
+    "ua-parser-js": "^2.0.9",
     "zod": "catalog:"
   },
   "devDependencies": {
