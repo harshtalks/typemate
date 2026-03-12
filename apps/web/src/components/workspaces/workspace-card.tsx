@@ -33,7 +33,10 @@ const WorkspaceCard = ({ workspace }: { workspace: Organization }) => {
               className={buttonVariants({
                 variant: "ghost",
               })}
-              to="/create-new-workspace"
+              params={{
+                workspaceId: workspace.id,
+              }}
+              to={"/workspaces/$workspaceId"}
             >
               Take me there <ArrowRightIcon />
             </Link>

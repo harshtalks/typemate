@@ -32,3 +32,5 @@ export const authMiddleware = createMiddleware().server(async ({ next }) => {
     },
   });
 });
+
+export const serverFnMiddlewares = [authMiddleware];

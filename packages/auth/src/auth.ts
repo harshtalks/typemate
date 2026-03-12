@@ -6,6 +6,7 @@ import { magicLink, organization } from "better-auth/plugins";
 import { tanstackStartCookies } from "better-auth/tanstack-start";
 import { Resend } from "resend";
 import { envs } from "../env";
+import { ac, roles } from "./permissions";
 
 const resend = new Resend(envs.SERVER_RESEND_API_KEY);
 
@@ -34,7 +35,10 @@ export const getAuthConfig = createServerOnlyFn(() =>
           }
         },
       }),
-      organization(),
+      organization({
+        ac,
+        roles,
+      }),
       tanstackStartCookies(),
     ],
     session: {

@@ -19,8 +19,13 @@ export const invitation = t.sqliteTable("invitation", {
   inviterId: t
     .text("inviter_id")
     .notNull()
+    .$type<Branded.MemberId>()
     .references(() => member.id),
-  organizationId: t.text("organization_id").references(() => organization.id),
+  organizationId: t
+    .text("organization_id")
+    .notNull()
+    .$type<Branded.OrganizationId>()
+    .references(() => organization.id),
   role: t.text("role").notNull(),
   status: t.text("status").notNull(),
   createdAt: createdAtSchema,

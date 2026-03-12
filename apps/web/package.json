@@ -13,6 +13,7 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@faker-js/faker": "^10.3.0",
     "@fontsource/inter": "^5.2.8",
     "@tailwindcss/vite": "catalog:",
     "@tanstack/db": "^0.5.28",
@@ -32,12 +33,15 @@
     "@typemate/types": "workspace:*",
     "@typemate/ui": "workspace:*",
     "date-fns": "^4.1.0",
+    "drizzle-orm": "catalog:",
     "effect": "catalog:",
     "motion": "^12.34.0",
     "react": "catalog:",
     "react-dom": "catalog:",
     "resend": "catalog:",
     "sonner": "catalog:",
+    "superjson": "^2.2.6",
+    "drizzle-zod": "catalog:",
     "tailwindcss": "catalog:",
     "ua-parser-js": "^2.0.9",
     "zod": "catalog:"

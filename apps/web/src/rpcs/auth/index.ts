@@ -7,10 +7,8 @@ import {
   organizationSelectArray,
 } from "@typemate/db/parsers/organizations";
 import { sessionSelectArray } from "@typemate/db/parsers/sessions";
-
-import { Branded } from "@typemate/types";
-import z from "zod";
 import { safeApiCall } from "~/lib/helpers";
+import { orgSlugSchema, tokenSchema, workspaceIdSchema } from "./validators";
 
 // get current logged in user
 const getUser = createServerFn({ method: "GET" }).handler(() =>
@@ -47,15 +45,13 @@ const createSessionWorkspace = createServerFn({
   );
 
 const checkOrganizationSlug = createServerFn({ method: "POST" })
-  .inputValidator(z.object({ slug: z.string().trim().min(1).max(50) }))
+  .inputValidator(orgSlugSchema)
   .handler(({ data }) =>
     auth.api.checkOrganizationSlug({ body: data, headers: getRequestHeaders() })
   );
 
 const deleteWorkspace = createServerFn({ method: "POST" })
-  .inputValidator(
-    z.object({ id: z.string().transform(Branded.OrganizationId) })
-  )
+  .inputValidator(workspaceIdSchema)
   .handler(({ data }) => {
     return auth.api.deleteOrganization({
       body: {
@@ -74,11 +70,7 @@ const getSessions = createServerFn({ method: "GET" }).handler(() =>
 );
 
 const deleteSession = createServerFn({ method: "POST" })
-  .inputValidator(
-    z.object({
-      token: z.string(),
-    })
-  )
+  .inputValidator(tokenSchema)
   .handler(({ data }) =>
     auth.api.revokeSession({
       body: {

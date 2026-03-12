@@ -2,6 +2,7 @@ import { useForm } from "@tanstack/react-form";
 import { useMutation } from "@tanstack/react-query";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { PrefixedIDs } from "@typemate/db/ids";
+import type { SchemaType } from "@typemate/types";
 import { Button } from "@typemate/ui/components/button";
 import {
   Empty,
@@ -26,6 +27,8 @@ const formSchema = z.object({
   slug: z.string().trim().min(1).max(50),
 });
 
+type FormSchema = SchemaType<typeof formSchema>;
+
 function RouteComponent() {
   const checkSlugMutation = useMutation({
     mutationFn: authRepo.checkOrganizationSlug,
@@ -34,7 +37,7 @@ function RouteComponent() {
   const router = useRouter();
 
   const form = useForm({
-    defaultValues: { name: "", slug: "" },
+    defaultValues: { name: "", slug: "" } as FormSchema,
     validators: {
       onSubmit: formSchema,
     },

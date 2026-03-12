@@ -6,7 +6,8 @@
     "@typemate/ts-config": "workspace:*"
   },
   "dependencies": {
-    "effect": "catalog:"
+    "effect": "catalog:",
+    "zod": "catalog:"
   },
   "exports": {
     ".": "./index.ts"
