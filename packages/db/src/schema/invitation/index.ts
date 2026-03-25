@@ -9,6 +9,7 @@ import { member } from "../member";
 import { organization } from "../organization";
 import { createdAtSchema, createTimestampSchema } from "../schema.common";
 import { PrefixedIDs } from "../schema.helper";
+import { user } from "../user";
 
 export const invitation = t.sqliteTable("invitation", {
   id: t
@@ -19,8 +20,8 @@ export const invitation = t.sqliteTable("invitation", {
   inviterId: t
     .text("inviter_id")
     .notNull()
-    .$type<Branded.MemberId>()
-    .references(() => member.id),
+    .$type<Branded.UserId>()
+    .references(() => user.id),
   organizationId: t
     .text("organization_id")
     .notNull()
@@ -29,7 +30,8 @@ export const invitation = t.sqliteTable("invitation", {
   role: t.text("role").notNull(),
   status: t.text("status").notNull(),
   createdAt: createdAtSchema,
-  expiresAt: createTimestampSchema("expires_at"),
+  expiresAt: createTimestampSchema("expires_at").notNull(),
+  email: t.text("email").notNull(),
 });
 
 export const invitationRelations = relations(invitation, ({ one }) => ({

@@ -8,7 +8,10 @@ import {
   castAsSanitizedLoadedSubsetOptions,
   parseSubsetOptionsForDB,
 } from "~/queries/common";
-import { memberWithUserArray } from "./validator";
+import {
+  currentWorkspaceCurrentUserMember,
+  memberWithUserArray,
+} from "./validator";
 
 const list = createServerFn({ method: "GET" })
   .middleware(serverFnMiddlewares)
@@ -32,6 +35,19 @@ const list = createServerFn({ method: "GET" })
     );
   });
 
+const getCurrentWorkspaceCurrentUserMember = createServerFn({ method: "GET" })
+  .middleware(serverFnMiddlewares)
+  .inputValidator(currentWorkspaceCurrentUserMember)
+  .handler(async ({ data }) => {
+    const { userId, workspaceId } = data;
+
+    return await db.query.member.findFirst({
+      where: (member) =>
+        and(eq(member.userId, userId), eq(member.organizationId, workspaceId)),
+    });
+  });
+
 export const membersRepo = {
   list,
+  getCurrentWorkspaceCurrentUserMember,
 };

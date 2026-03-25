@@ -10,6 +10,7 @@ import {
 import { Match, pipe } from "effect";
 import z from "zod";
 import { LiveQueryWrapper } from "~/components/shared/live-query-wrapper";
+import Invitations from "~/components/workspaces/invitations";
 import WorkspaceMembers from "~/components/workspaces/workspace-members";
 import { workspacesCollection } from "~/queries/workspaces";
 
@@ -39,11 +40,10 @@ const tabOptions: {
 ];
 
 export const Route = createFileRoute(
-  "/(authenticated)/workspaces/$workspaceId"
+  "/(authenticated)/workspaces/$workspaceId/"
 )({
   component: RouteComponent,
   validateSearch: searchParamsSchema,
-  ssr: false,
 });
 
 function RouteComponent() {
@@ -69,7 +69,7 @@ function RouteComponent() {
             <Tabs
               onValueChange={(tab) =>
                 navigate({
-                  from: "/workspaces/$workspaceId",
+                  from: "/workspaces/$workspaceId/",
                   to: ".",
                   search: { tab },
                 })
@@ -88,6 +88,7 @@ function RouteComponent() {
                   tab,
                   Match.value,
                   Match.when("members", () => <WorkspaceMembers />),
+                  Match.when("invitation", () => <Invitations />),
                   Match.orElse(() => null)
                 )}
               </TabsContent>

@@ -5,7 +5,7 @@ import superjson from "superjson";
 import { getQueryClient, queryKeyFactory } from "~/lib/react-query";
 import { membersRepo } from "~/rpcs/members";
 import { memberWithUser } from "~/rpcs/members/validator";
-import { santizedLoadedSubsetOptions } from "./common";
+import { sanitizedLoadedSubsetOptions } from "./common";
 
 export const membersCollection = createCollection(
   queryCollectionOptions({
@@ -14,7 +14,7 @@ export const membersCollection = createCollection(
       membersRepo.list({
         data: pipe(
           meta?.loadSubsetOptions,
-          santizedLoadedSubsetOptions,
+          sanitizedLoadedSubsetOptions,
           superjson.stringify
         ),
       }),

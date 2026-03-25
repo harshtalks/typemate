@@ -38,6 +38,20 @@ export const getAuthConfig = createServerOnlyFn(() =>
       organization({
         ac,
         roles,
+        invitationExpiresIn: 48,
+        sendInvitationEmail: async ({ email }) => {
+          const response = await resend.emails.send({
+            to: email,
+            subject: "You've been invited to join a workspace",
+            html: `<h1>You've been invited to join a workspace</h1><p>Click the link below to accept the invitation:</p><p><a>`,
+            text: `You've been invited to join a workspace\n\nClick the link below to accept the invitation:\n\n`,
+            from: "Acme <onboarding@resend.dev>",
+          });
+
+          if (response.error) {
+            throw new Error(response.error.message);
+          }
+        },
       }),
       tanstackStartCookies(),
     ],

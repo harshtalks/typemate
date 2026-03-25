@@ -8,7 +8,7 @@ import MemberCard from "./member-card";
 
 const WorkspaceMembers = () => {
   const { workspaceId } = useParams({
-    from: "/(authenticated)/workspaces/$workspaceId",
+    from: "/(authenticated)/workspaces/$workspaceId/",
   });
 
   const liveQuery = useLiveQuery((query) =>

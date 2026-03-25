@@ -26,7 +26,7 @@ export const castAsSanitizedLoadedSubsetOptions = (
   throw new Error("Invalid loaded subset options");
 };
 
-export const santizedLoadedSubsetOptions = (
+export const sanitizedLoadedSubsetOptions = (
   options?: LoadSubsetOptions
 ): SanitizedLoadedSubsetOptions | undefined => {
   return options
@@ -51,39 +51,39 @@ export const parseLoadSubsetOptionsForAuth = (
   // Use custom handlers to match your API's format
   const filters = parseWhereExpression(where, {
     handlers: {
-      eq: (field, value) => ({
+      eq: (field: string[], value) => ({
         filterOperator: "eq",
-        filterField: field,
+        filterField: field.at(0),
         filterValue: value,
       }),
-      ne: (field, value) => ({
+      ne: (field: string[], value) => ({
         filterOperator: "ne",
-        filterField: field,
+        filterField: field.at(0),
         filterValue: value,
       }),
-      lt: (field, value) => ({
+      lt: (field: string[], value) => ({
         filterOperator: "lt",
-        filterField: field,
+        filterField: field.at(0),
         filterValue: value,
       }),
-      lte: (field, value) => ({
+      lte: (field: string[], value) => ({
         filterOperator: "lte",
-        filterField: field,
+        filterField: field.at(0),
         filterValue: value,
       }),
-      gt: (field, value) => ({
+      gt: (field: string[], value) => ({
         filterOperator: "gt",
-        filterField: field,
+        filterField: field.at(0),
         filterValue: value,
       }),
-      gte: (field, value) => ({
+      gte: (field: string[], value) => ({
         filterOperator: "gte",
-        filterField: field,
+        filterField: field.at(0),
         filterValue: value,
       }),
-      ilike: (field, value) => ({
+      ilike: (field: string[], value) => ({
         filterOperator: "contains",
-        filterField: field,
+        filterField: field.at(0),
         filterValue: value,
       }),
     },

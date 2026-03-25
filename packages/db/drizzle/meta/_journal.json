@@ -15,6 +15,13 @@
       "when": 1771398614687,
       "tag": "0001_sour_abomination",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1773741322614,
+      "tag": "0002_neat_sleeper",
+      "breakpoints": true
     }
   ]
 }

@@ -24,3 +24,5 @@ export const roles = {
     organization: [],
   }),
 } as const;
+
+export type Role = keyof typeof roles;

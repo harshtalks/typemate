@@ -6,6 +6,7 @@
     "@typemate/ts-config": "workspace:*",
     "@typemate/tools": "workspace:*",
     "@typemate/types": "workspace:*",
+    "@typemate/auth": "workspace:*",
     "drizzle-kit": "^0.31.9",
     "nanoid": "^5.1.6",
     "tsx": "^4.21.0",
