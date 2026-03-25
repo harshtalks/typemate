@@ -87,6 +87,16 @@ function RouteComponent() {
                           />
                         ))
                       )}
+                      <Button
+                        render={() => (
+                          <Link
+                            className={buttonVariants({})}
+                            to="/create-new-workspace"
+                          >
+                            Create Workspace
+                          </Link>
+                        )}
+                      />
                     </div>
                   )}
                 </NonEmptyArray.WhenNonEmpty>

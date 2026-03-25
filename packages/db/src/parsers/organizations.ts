@@ -5,12 +5,10 @@ import { organization } from "../schema";
 
 export const organizationInsert = createInsertSchema(organization, {
   id: z.string().transform(Branded.OrganizationId).optional(),
-  metadata: z.any().optional(),
 });
 
 export const organizationSelect = createInsertSchema(organization, {
   id: z.string().transform(Branded.OrganizationId),
-  metadata: z.any().optional(),
 });
 
 export const organizationSelectArray = z.array(organizationSelect);

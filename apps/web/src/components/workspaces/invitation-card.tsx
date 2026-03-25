@@ -2,6 +2,7 @@ import type { Invitation } from "@typemate/db/schema";
 import { Badge } from "@typemate/ui/components/badge";
 import { Button } from "@typemate/ui/components/button";
 import { TrashIcon } from "@typemate/ui/components/icons";
+import { DATE_FORMAT } from "@typemate/ui/lib/utils";
 import { formatDate, formatDistanceToNow } from "date-fns";
 import type { FC } from "react";
 
@@ -27,7 +28,7 @@ const InvitationCard: FC<{ invitation: Invitation }> = ({ invitation }) => {
             {formatDistanceToNow(new Date(invitation.createdAt), {
               addSuffix: true,
             })}{" "}
-            ({formatDate(new Date(invitation.createdAt), "MM.dd.yyyy hh:mm a")})
+            ({formatDate(new Date(invitation.createdAt), DATE_FORMAT)})
           </p>
         </div>
 
@@ -42,7 +43,7 @@ const InvitationCard: FC<{ invitation: Invitation }> = ({ invitation }) => {
       <p className="text-muted-foreground">
         Invitation Expires in{" "}
         {formatDistanceToNow(new Date(invitation.expiresAt))} (
-        {formatDate(new Date(invitation.expiresAt), "MM/dd/yyyy")})
+        {formatDate(new Date(invitation.expiresAt), DATE_FORMAT)})
       </p>
     </div>
   );

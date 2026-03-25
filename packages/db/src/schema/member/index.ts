@@ -1,3 +1,4 @@
+import type { Role } from "@typemate/auth/permissions";
 import type { Branded } from "@typemate/types";
 import {
   type InferInsertModel,
@@ -24,13 +25,17 @@ export const member = t.sqliteTable("member", {
     .text("organization_id")
     .notNull()
     .references(() => organization.id),
-  role: t.text("role").notNull(),
+  role: t.text("role").notNull().$type<Role>(),
   createdAt: createdAtSchema,
 });
 
 export const memberRelations = relations(member, ({ one }) => ({
   user: one(member),
-  organization: one(organization),
+  organization: one(organization, {
+    relationName: "organizationMembers",
+    fields: [member.organizationId],
+    references: [organization.id],
+  }),
 }));
 
 export type Member = InferSelectModel<typeof member>;

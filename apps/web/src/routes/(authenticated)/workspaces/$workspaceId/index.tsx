@@ -1,6 +1,13 @@
-import { eq, useLiveQuery } from "@tanstack/react-db";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import type { Organization } from "@typemate/db/schema";
+import {
+  createFileRoute,
+  useNavigate,
+  useRouteContext,
+} from "@tanstack/react-router";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@typemate/ui/components/avatar";
 import {
   Tabs,
   TabsContent,
@@ -9,10 +16,10 @@ import {
 } from "@typemate/ui/components/tabs";
 import { Match, pipe } from "effect";
 import z from "zod";
-import { LiveQueryWrapper } from "~/components/shared/live-query-wrapper";
 import Invitations from "~/components/workspaces/invitations";
+import Overview from "~/components/workspaces/overview";
 import WorkspaceMembers from "~/components/workspaces/workspace-members";
-import { workspacesCollection } from "~/queries/workspaces";
+import { getFallbackName } from "~/lib/helpers";
 
 const searchParamsSchema = z.object({
   tab: z
@@ -48,54 +55,53 @@ export const Route = createFileRoute(
 
 function RouteComponent() {
   const { tab } = Route.useSearch();
-  const { workspaceId } = Route.useParams();
   const navigate = useNavigate();
 
-  const workspaceQuery = useLiveQuery((query) =>
-    query
-      .from({ workspace: workspacesCollection })
-      .where(({ workspace }) => eq(workspace.id, workspaceId))
-      .findOne()
-  );
+  const { workspace } = useRouteContext({
+    from: "/(authenticated)/workspaces/$workspaceId/",
+  });
+
+  if (!workspace) {
+    return null;
+  }
 
   return (
-    <LiveQueryWrapper query={workspaceQuery}>
-      <LiveQueryWrapper.Loading />
-      <LiveQueryWrapper.Error />
-      <LiveQueryWrapper.Ready>
-        {(workspace: Organization) => (
-          <div className="space-y-8">
-            <h1 className="font-bold text-4xl">{workspace.name}</h1>
-            <Tabs
-              onValueChange={(tab) =>
-                navigate({
-                  from: "/workspaces/$workspaceId/",
-                  to: ".",
-                  search: { tab },
-                })
-              }
-              value={tab}
-            >
-              <TabsList>
-                {tabOptions.map(({ label, value }) => (
-                  <TabsTrigger key={value} value={value}>
-                    {label}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-              <TabsContent className="py-4" value={tab}>
-                {pipe(
-                  tab,
-                  Match.value,
-                  Match.when("members", () => <WorkspaceMembers />),
-                  Match.when("invitation", () => <Invitations />),
-                  Match.orElse(() => null)
-                )}
-              </TabsContent>
-            </Tabs>
-          </div>
-        )}
-      </LiveQueryWrapper.Ready>
-    </LiveQueryWrapper>
+    <div className="space-y-8">
+      <div className="space-y-4">
+        <Avatar className={"size-12 rounded-md"}>
+          <AvatarFallback>{getFallbackName(workspace.name)}</AvatarFallback>
+          <AvatarImage src={workspace.logo || undefined} />
+        </Avatar>
+        <h1 className="font-bold text-4xl">{workspace.name}</h1>
+      </div>
+      <Tabs
+        onValueChange={(tab) =>
+          navigate({
+            from: "/workspaces/$workspaceId/",
+            to: ".",
+            search: { tab },
+          })
+        }
+        value={tab}
+      >
+        <TabsList>
+          {tabOptions.map(({ label, value }) => (
+            <TabsTrigger key={value} value={value}>
+              {label}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+        <TabsContent className="py-4" value={tab}>
+          {pipe(
+            tab,
+            Match.value,
+            Match.when("members", () => <WorkspaceMembers />),
+            Match.when("invitation", () => <Invitations />),
+            Match.when("overview", () => <Overview />),
+            Match.orElse(() => null)
+          )}
+        </TabsContent>
+      </Tabs>
+    </div>
   );
 }

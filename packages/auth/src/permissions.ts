@@ -5,6 +5,7 @@ import {
   memberAc,
   ownerAc,
 } from "better-auth/plugins/organization/access";
+import z from "zod";
 
 export const ac = createAccessControl({
   ...defaultStatements,
@@ -26,3 +27,7 @@ export const roles = {
 } as const;
 
 export type Role = keyof typeof roles;
+
+const roleNames = ["admin", "developer", "admin"] as Role[];
+
+export const roleSchema = z.enum(roleNames);
