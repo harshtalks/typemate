@@ -44,7 +44,6 @@ const AddNewMembersToWorkspace = () => {
     user: {
       user: { id: userId },
     },
-    workspaceMember,
   } = useRouteContext({
     from: "/(authenticated)/workspaces/$workspaceId",
   });
@@ -78,7 +77,6 @@ const AddNewMembersToWorkspace = () => {
       <DialogTrigger render={<Button>Add New Members</Button>} />
       <DialogContent>
         <DialogHeader>
-          {workspaceMember?.id}
           <DialogTitle>Add New Members</DialogTitle>
           <DialogDescription>
             Add new members to the workspace. They will be able to access the
