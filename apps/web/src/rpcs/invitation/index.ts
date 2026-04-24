@@ -7,12 +7,15 @@ import {
 } from "@typemate/db/parsers/invitation";
 import { pipe } from "effect";
 import { safeApiCall } from "~/lib/helpers";
+import { serverFnMiddlewares } from "~/middlewares/auth";
 import {
   castAsSanitizedLoadedSubsetOptions,
   parseLoadSubsetOptionsForAuth,
 } from "~/queries/common";
+import { invitationIdSchema } from "./validators";
 
 const list = createServerFn({ method: "GET" })
+  .middleware(serverFnMiddlewares)
   .inputValidator(castAsSanitizedLoadedSubsetOptions)
   .handler(({ data }) =>
     pipe(
@@ -36,6 +39,7 @@ const list = createServerFn({ method: "GET" })
   );
 
 const add = createServerFn({ method: "POST" })
+  .middleware(serverFnMiddlewares)
   .inputValidator(invitationSelect.omit({ status: true }))
   .handler(({ data }) =>
     auth.api.createInvitation({
@@ -49,7 +53,20 @@ const add = createServerFn({ method: "POST" })
     })
   );
 
+const remove = createServerFn({ method: "POST" })
+  .middleware(serverFnMiddlewares)
+  .inputValidator(invitationIdSchema)
+  .handler(({ data }) =>
+    auth.api.cancelInvitation({
+      body: {
+        invitationId: data.invitationId,
+      },
+      headers: getRequestHeaders(),
+    })
+  );
+
 export const invitationRepo = {
   list,
   add,
+  remove,
 };

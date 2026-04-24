@@ -47,8 +47,7 @@ export const queryKeyFactory = new QueryKeyFactory<QueryKeyAnnotations>(
   .createQueryKey("accounts", { group: "auth" })
   .createQueryKey("members", { group: "workspaces" })
   .createQueryKey("invitations", { group: "workspaces" })
-  .createQueryKey("member", {
-    group: "workspaces",
-  });
+  .createQueryKey("member", { group: "workspaces" })
+  .createQueryKey("projects", { group: "workspaces" });
 
 export type AnnotatedQueryKeyFactory = typeof queryKeyFactory;

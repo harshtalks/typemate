@@ -19,4 +19,10 @@ export const PrefixedIDs = {
   org: prefixedId("org"),
   member: prefixedId("member"),
   invitation: prefixedId("invitation"),
+  proj: prefixedId("proj"),
+  cust: prefixedId("cust"),
+  apiKey: prefixedId("apikey"),
+  tmpl: prefixedId("tmpl"),
+  tmplv: prefixedId("tmplv"),
+  inv: prefixedId("inv"),
 };

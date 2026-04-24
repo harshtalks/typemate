@@ -18,6 +18,7 @@ import { Match, pipe } from "effect";
 import z from "zod";
 import Invitations from "~/components/workspaces/invitations";
 import Overview from "~/components/workspaces/overview";
+import Projects from "~/components/workspaces/projects";
 import WorkspaceMembers from "~/components/workspaces/workspace-members";
 import { getFallbackName } from "~/lib/helpers";
 
@@ -26,7 +27,7 @@ const searchParamsSchema = z.object({
     .union([
       z.literal("overview"),
       z.literal("members"),
-      z.literal("templates"),
+      z.literal("projects"),
       z.literal("settings"),
       z.literal("invitation"),
     ])
@@ -41,7 +42,7 @@ const tabOptions: {
 }[] = [
   { label: "Overview", value: "overview" },
   { label: "Members", value: "members" },
-  { label: "Templates", value: "templates" },
+  { label: "Projects", value: "projects" },
   { label: "Invitations", value: "invitation" },
   { label: "Settings", value: "settings" },
 ];
@@ -98,6 +99,7 @@ function RouteComponent() {
             Match.when("members", () => <WorkspaceMembers />),
             Match.when("invitation", () => <Invitations />),
             Match.when("overview", () => <Overview />),
+            Match.when("projects", () => <Projects />),
             Match.orElse(() => null)
           )}
         </TabsContent>

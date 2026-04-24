@@ -38,7 +38,6 @@ const createSessionWorkspace = createServerFn({
         name: data.name,
         slug: data.slug,
         logo: data.logo ?? undefined,
-        metadata: data.metadata ?? undefined,
         userId: data.id,
       },
     })

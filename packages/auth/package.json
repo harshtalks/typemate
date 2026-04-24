@@ -2,21 +2,23 @@
   "name": "@typemate/auth",
   "version": "0.0.1",
   "devDependencies": {
-    "@typemate/ts-config": "workspace:*",
-    "@typemate/tools": "workspace:*",
     "@dotenvx/dotenvx": "catalog:",
-    "zod": "catalog:",
     "@t3-oss/env-core": "catalog:",
+    "@typemate/tools": "workspace:*",
+    "@typemate/ts-config": "workspace:*",
+    "@types/nodemailer": "^8.0.0",
+    "effect": "catalog:",
     "resend": "catalog:",
-    "effect": "catalog:"
+    "zod": "catalog:"
   },
   "peerDependencies": {
-    "@typemate/db": "workspace:*",
     "@tanstack/react-query": "catalog:",
-    "@tanstack/react-start": "catalog:"
+    "@tanstack/react-start": "catalog:",
+    "@typemate/db": "workspace:*"
   },
   "dependencies": {
-    "better-auth": "^1.4.18"
+    "better-auth": "^1.4.18",
+    "nodemailer": "^8.0.5"
   },
   "exports": {
     "./*": "./src/*.ts",

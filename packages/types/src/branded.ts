@@ -33,3 +33,24 @@ export const MemberId = GenerateStringBrand<"memberId">();
 
 export type InvitationId = GenerateStringBrand<"invitationId">;
 export const InvitationId = GenerateStringBrand<"invitationId">();
+
+export type ProjectId = GenerateStringBrand<"projectId">;
+export const ProjectId = GenerateStringBrand<"projectId">();
+
+export type CustomerId = GenerateStringBrand<"customerId">;
+export const CustomerId = GenerateStringBrand<"customerId">();
+
+export type ApiKeyId = GenerateStringBrand<"apiKeyId">;
+export const ApiKeyId = GenerateStringBrand<"apiKeyId">();
+
+export type TemplateId = GenerateStringBrand<"templateId">;
+export const TemplateId = GenerateStringBrand<"templateId">();
+
+export type TemplateVersionId = GenerateStringBrand<"templateVersionId">;
+export const TemplateVersionId = GenerateStringBrand<"templateVersionId">();
+
+export type InvoiceId = GenerateStringBrand<"invoiceId">;
+export const InvoiceId = GenerateStringBrand<"invoiceId">();
+
+export type InvoiceHumanId = GenerateStringBrand<"invoiceHumanId">;
+export const InvoiceHumanId = GenerateStringBrand<"invoiceHumanId">();

@@ -66,6 +66,7 @@ const AddNewMembersToWorkspace = () => {
         id: PrefixedIDs.invitation(),
         expiresAt: addHours(new Date(), 48),
         inviterId: userId,
+        status: "pending",
       });
 
       setIsOpen(false);
